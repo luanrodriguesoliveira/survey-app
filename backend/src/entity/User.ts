@@ -1,5 +1,13 @@
-import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert, BeforeUpdate } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  BeforeInsert,
+  BeforeUpdate,
+  OneToMany,
+} from 'typeorm';
 import { hash } from 'argon2';
+import { Survey } from './Survey';
 
 @Entity()
 export class User {
@@ -17,6 +25,9 @@ export class User {
 
   @Column()
   password: string;
+
+  @OneToMany(() => Survey, survey => survey.user)
+  surveys: Survey[];
 
   async hashPassword(): Promise<string> {
     return await hash(this.password);
