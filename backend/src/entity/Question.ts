@@ -4,15 +4,15 @@ import { Answer } from './Answer';
 @Entity()
 export class Question {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column()
-  title: string;
+  title!: string;
 
   @OneToMany(() => Answer, answer => answer.question)
-  answers: Answer[];
+  answers!: Answer[];
 
   @OneToOne(() => Answer)
   @JoinColumn()
-  rightAnswer: Answer;
+  rightAnswer!: Answer;
 }

@@ -12,22 +12,22 @@ import { Survey } from './Survey';
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column()
-  firstName: string;
+  firstName!: string;
 
   @Column()
-  lastName: string;
+  lastName!: string;
 
   @Column()
-  email: string;
+  email!: string;
 
   @Column()
-  password: string;
+  password!: string;
 
   @OneToMany(() => Survey, survey => survey.user)
-  surveys: Survey[];
+  surveys!: Survey[];
 
   async hashPassword(): Promise<string> {
     return await hash(this.password);

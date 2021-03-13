@@ -4,11 +4,11 @@ import { Question } from './Question';
 @Entity()
 export class Answer {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column()
-  content: string;
+  content!: string;
 
   @ManyToOne(() => Question, question => question.answers)
-  question: Question;
+  question!: Question;
 }
