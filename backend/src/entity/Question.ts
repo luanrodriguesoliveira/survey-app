@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, OneToMany } from 'typeorm';
-import { Answer } from './Answer';
+import { Alternative } from './Alternative';
 
 @Entity()
 export class Question {
@@ -9,10 +9,10 @@ export class Question {
   @Column()
   title!: string;
 
-  @OneToMany(() => Answer, answer => answer.question)
-  answers!: Answer[];
+  @OneToMany(() => Alternative, answer => answer.question)
+  answers!: Alternative[];
 
-  @OneToOne(() => Answer)
+  @OneToOne(() => Alternative)
   @JoinColumn()
-  rightAnswer!: Answer;
+  rightAlternative!: Alternative;
 }
