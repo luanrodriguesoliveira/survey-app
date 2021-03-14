@@ -38,4 +38,25 @@ export class UserController {
       token,
     });
   }
+
+  @Post('register')
+  private async register(req: Request, res: Response): Promise<Response<Record<string, unknown>>> {
+    const { email, password, firstName, lastName } = req.body;
+
+    const user = await this.userRepository.findOne({ email: email });
+
+    if (user) {
+      return res.status(400).send('User already exists');
+    }
+
+    const newUser = new User();
+    newUser.email = email;
+    newUser.firstName = firstName;
+    newUser.lastName = lastName;
+    newUser.password = password;
+
+    this.userRepository.save(newUser);
+
+    return res.send(201);
+  }
 }
